@@ -8,8 +8,7 @@ import {
   List,
   ListItem,
   ListIcon,
-  Spinner,
-  Progress,
+  SkeletonText,
 } from '@chakra-ui/react';
 import { MdAccessTime } from 'react-icons/md';
 import Calendar from 'react-calendar';
@@ -128,7 +127,33 @@ const SwimTimesCalendar = () => {
             ))}
           </List>
         ) : (
-          <>{isLoading && <Spinner />}</>
+          <>
+            {isLoading && (
+              <List
+                spacing="5"
+                background={'lightblue'}
+                padding="10"
+                margin={5}
+                borderRadius={5}
+              >
+                <ListItem>
+                  <SkeletonText />
+                </ListItem>
+                <ListItem>
+                  <SkeletonText />
+                </ListItem>
+                <ListItem>
+                  <SkeletonText />
+                </ListItem>
+                <ListItem>
+                  <SkeletonText />
+                </ListItem>
+                <ListItem>
+                  <SkeletonText />
+                </ListItem>
+              </List>
+            )}
+          </>
         )}
       </Box>
     </Box>

@@ -1,17 +1,5 @@
 import React from 'react';
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
-import { useEffect, useState } from 'react';
+import { ChakraProvider, theme } from '@chakra-ui/react';
 
 import SwimTimesCalendar from './DayCal';
 function App() {
@@ -19,10 +7,11 @@ function App() {
     <ChakraProvider theme={theme}>
       {/* <Box textAlign="center" fontSize="xl">
         <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
+        
           <DayCalendarView events={events} />;
         </Grid>
       </Box> */}
+      {/* <ColorModeSwitcher justifySelf="flex-end" /> */}
       <SwimTimesCalendar />
     </ChakraProvider>
   );
