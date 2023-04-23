@@ -47,21 +47,21 @@ const SwimTimesCalendar = () => {
   const [date, setDate] = useState(new Date());
   const [swimTimes, setSwimTimes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const fetchSwimTimes = async () => {
-    const formattedDate = toIsoStringg(date).slice(0, 19).replace('T', ' ');
-    console.log(formattedDate);
-    setIsLoading(true);
-    const queryParams = `?locationGroupId=8ecba194-543b-4235-824d-746e2f0e9fdf&date=${formattedDate}&endDate=null`;
-    const response = await fetch(`${apiUrl}${queryParams}`);
-    const data = await response.json();
-    const swimTimes = data
-      .filter(event => event.ActivityCode === 'ST03')
-      .sort((a, b) => a.StartTime.localeCompare(b.StartTime));
-    setSwimTimes(swimTimes);
-    setIsLoading(false);
-  };
 
   useEffect(() => {
+    const fetchSwimTimes = async () => {
+      const formattedDate = toIsoStringg(date).slice(0, 19).replace('T', ' ');
+      console.log(formattedDate);
+      setIsLoading(true);
+      const queryParams = `?locationGroupId=8ecba194-543b-4235-824d-746e2f0e9fdf&date=${formattedDate}&endDate=null`;
+      const response = await fetch(`${apiUrl}${queryParams}`);
+      const data = await response.json();
+      const swimTimes = data
+        .filter(event => event.ActivityCode === 'ST03')
+        .sort((a, b) => a.StartTime.localeCompare(b.StartTime));
+      setSwimTimes(swimTimes);
+      setIsLoading(false);
+    };
     fetchSwimTimes();
   }, [date]);
 
@@ -117,7 +117,8 @@ const SwimTimesCalendar = () => {
                   })}
                   {/* - {event.DisplayName} - {event.AvailablePlaces} -{' '}
                   {event.TotalPlaces} */}
-                  - {event.DisplayName}
+                  -{event.AvailablePlaces} - Slots Available -{' '}
+                  {event.DisplayName}
                 </Text>
                 <AvailabilityIndicator
                   total={event.TotalPlaces}

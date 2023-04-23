@@ -6,16 +6,16 @@ const calculatePercentage = (total, available) => {
 
 const getColorScheme = percentage => {
   if (percentage >= 90) {
-    return 'green';
+    return 'red';
   } else if (percentage >= 50) {
     return 'yellow';
   } else {
-    return 'red';
+    return 'green';
   }
 };
 
 const AvailabilityIndicator = ({ total, available }) => {
-  const percentage = calculatePercentage(total, available);
+  const percentage = calculatePercentage(48, 48 - available);
   const colorScheme = getColorScheme(percentage);
 
   return (
