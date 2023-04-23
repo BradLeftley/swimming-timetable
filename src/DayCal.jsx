@@ -53,7 +53,7 @@ const SwimTimesCalendar = () => {
       const formattedDate = toIsoStringg(date).slice(0, 19).replace('T', ' ');
       console.log(formattedDate);
       setIsLoading(true);
-      const queryParams = `?locationGroupId=8ecba194-543b-4235-824d-746e2f0e9fdf&date=${formattedDate}&endDate=null`;
+      const queryParams = `?date=${formattedDate}&endDate=null`;
       const response = await fetch(`${apiUrl}${queryParams}`, {
         method: 'GET',
       });
@@ -119,8 +119,7 @@ const SwimTimesCalendar = () => {
                   })}
                   {/* - {event.DisplayName} - {event.AvailablePlaces} -{' '}
                   {event.TotalPlaces} */}
-                  -{event.AvailablePlaces} - Slots Available -{' '}
-                  {event.DisplayName}
+                  -{event.AvailablePlaces} Slots Available - {event.DisplayName}
                 </Text>
                 <AvailabilityIndicator
                   total={event.TotalPlaces}
