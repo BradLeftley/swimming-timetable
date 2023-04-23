@@ -56,9 +56,6 @@ const SwimTimesCalendar = () => {
       const queryParams = `?locationGroupId=8ecba194-543b-4235-824d-746e2f0e9fdf&date=${formattedDate}&endDate=null`;
       const response = await fetch(`${apiUrl}${queryParams}`, {
         method: 'GET',
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-        },
       });
       const data = await response.json();
       const swimTimes = data
