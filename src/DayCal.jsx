@@ -44,14 +44,20 @@ function toIsoStringg(date) {
 }
 
 const SwimTimesCalendar = () => {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(() => {
+    const startoffDate = new Date();
+    startoffDate.setHours(0, 0, 0, 0);
+
+    return startoffDate;
+  });
   const [swimTimes, setSwimTimes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchSwimTimes = async () => {
       const formattedDate = toIsoStringg(date).slice(0, 19).replace('T', ' ');
-      console.log(formattedDate);
+      console.log('Formatted Date', formattedDate);
+
       setIsLoading(true);
       const queryParams = `?date=${formattedDate}&endDate=null`;
       const response = await fetch(`${apiUrl}${queryParams}`, {
